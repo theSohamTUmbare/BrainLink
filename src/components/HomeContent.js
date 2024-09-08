@@ -17,6 +17,7 @@ function HomeContent({isOpen}){
   const [questions, setQuestions] = useState([]);
   const [notes, setNotes] = useState([]);
   const [usernames, setUsernames] = useState({});
+  const [usernamesq, setUsernamesq] = useState({});
   const [answer_count, setAnswer_count] = useState({});
   const [questionTags, setQuestionTags] = useState({});
   
@@ -82,7 +83,7 @@ function HomeContent({isOpen}){
         response.data.forEach((q) => {
           fetchTags(q.id);
           fetchAnswerCount(q.id);
-
+          get_userNameq(q.author_id)
         })
       })
       .catch(error => console.error("Error fetching top questions:", error));
@@ -100,10 +101,23 @@ function HomeContent({isOpen}){
       .catch((error) => console.error("Error fetching notes:", error));
   }, []);
 
+
   const get_userName = async (id) => {
     try {
       const res = await axios.post("http://localhost:8081/username", { id });
       setUsernames((prevUsernames) => ({
+        ...prevUsernames,
+        [id]: res.data,
+      }));
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error fetching username:", error);
+    }
+  };
+  const get_userNameq = async (id) => {
+    try {
+      const res = await axios.post("http://localhost:8081/username", { id });
+      setUsernamesq((prevUsernames) => ({
         ...prevUsernames,
         [id]: res.data,
       }));
@@ -182,23 +196,20 @@ function HomeContent({isOpen}){
                   <div className="hometagsnuser">
                   <div id="quetags">
                         {questionTags[question.id] ? (
-                          questionTags[question.id].map((tag) => (
+                          questionTags[question.id].slice(0, 3).map((tag) => (
                             <span key={tag.tag_id} id="quetagresult">
                               {tag.tag_name}
                             </span>
                           ))
                         ) : (
                           <p>loading tags ... </p>
-                          // <button onClick={() => fetchTags(question.id)}>
-                          //     Load Tags
-                          // </button>
                         )}
                       </div>
                     <div className="user">
                       <div>
                         <img src={userImg} className="user-image" />
                       </div>
-                      <div className="name">{usernames[question.author_id] || "Loading..."}</div>
+                      <div className="name">{usernamesq[question.author_id] || "Loading..."}</div>
                     </div>
                     <div className="time">{formatDistanceToNow(new Date(question?.created_at || '2024-06-30T17:16:25'), {
                     addSuffix: true,
@@ -216,7 +227,7 @@ function HomeContent({isOpen}){
         <div className="topNoteBar">
           <h2 id="topQuestions">Let's, dive into the Notes </h2>
         </div>
-        <ol className={classNames("notelist", { "-notelistactive": !isOpen })}>
+        <ol className="notelist">
         {notes.map((note) => (
           <li className="note" key={note.id}>
             <Link to={`/note/${note.id}`} state={{ note }}>
@@ -319,6 +330,13 @@ function HomeContent({isOpen}){
 
           </div>
           <div className="searchBox">
+            <h4 className="boxh4s">Chat with Your Notes</h4>
+            <p className="boxhps">Interact with your notes directly in Brainlink. Ask questions, get insights, and engage deeply with your study material. 
+            </p>
+            <div className="forbutton"><a href="/notes"><button className="boxbuttons">Explore Now</button></a></div>
+
+          </div>
+          <div className="searchBox">
             <h4 className="boxh4s">Profile </h4>
             <p className="boxhps">View your contributions, and manage your profile
             </p>
@@ -330,9 +348,15 @@ function HomeContent({isOpen}){
       <div className="news">
         <h4 id="newtotell">New from Brainlink</h4>
         <div className="anotherhomebox">
-        <h3 className="newsh3">New Feature: Tags!</h3>
+        <h3 className="newsh3">Chat with notes!</h3>
+        <p className="boxhps">We are excited to introduce the 'Chat with Notes' feature on Brainlink! Now, you can interact directly with the notes in the Brainlink note section, enhancing your productivity and learning experience. Start chatting with the notes today and make the most of your Brainlink experience!</p>
+        <div className="forbutton"><a href="/notes"><button className="boxbuttons">Explore Now!</button></a></div>
+        
+        </div>
+        <div className="anotherhomebox">
+        <h3 className="newsh3">Tags!</h3>
         <p className="boxhps">We're excited to introduce tags on Brainlink! Now you can easily add tags to your questions, making them more discoverable. <br/>Not only that, but you can also search by tags to find related questions and notes quickly. Start tagging and enhance your Brainlink experience today!</p>
-        <div className="forbutton"><a href="/alltags"><button className="boxbuttons">Explore Tags</button></a></div>
+        <div className="forbutton"><a href="/alltags"><button className="boxbuttons">Explore Tags!</button></a></div>
         
         </div>
       </div>

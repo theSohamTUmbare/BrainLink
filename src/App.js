@@ -6,7 +6,7 @@ import "./App.css";
 import HomeContent from "./components/HomeContent";
 import Login from "./login";
 import Search from "./search";
-import Signup from "./signup";
+// import Signup from "./signup";
 import You from "./youPage/you";
 import Ask from "./askPage/ask";
 import QuestionList from "./questionPage/questionList";
@@ -24,6 +24,7 @@ import LikedQue from "./youPage/youlikedque.js";
 import LikedNotes from "./youPage/youlikednotes.js";
 import MarkedQue from "./marked/markedQue.js";
 import MarkedNotes from "./marked/markedNote.js";
+import PdfChat from "./chat_with_pdf.js/pdfChat.js";
 
 function App() {
   const [sidebarIsOpen, setSidebarOpen] = useState(true);
@@ -35,10 +36,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/signup" element={<Signup />} /> */}
           <Route path="/search" element={<Search />} />
           <Route path="/search/:id" element={<SearchTag />} />
           <Route path="/alltags" element={<Alltags />} />
+          <Route path="/pdfchat/:id" element={<PdfChat />} />
           <Route
             path="/*"
             element={

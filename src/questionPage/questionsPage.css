@@ -87,7 +87,7 @@
     justify-self: right;
     text-align: right;
     overflow: hidden;
-    width: 170px;
+    width: 185px;
 }
 
 .questionHeading{
@@ -151,17 +151,32 @@
 }
 
 #quetags{
-    max-width: 550px;
+    max-width: 490px;
     margin-top: 0px;
-    overflow: hidden;
+    overflow:hidden;
     display: flex;
     align-items: center;
+
+}
+#innerquetags{
+    max-width: 1100px;
+    margin-top: 0px;
+    overflow:hidden;
+    display: flex;
+    align-items: center;
+    
 }
 #youquetags{
     margin-top: -3px;
+    max-width: 490px;
     height: 35px;
     display: flex;
     overflow: hidden;
+}
+
+#qimg{
+    width: auto;
+    height: 470px;
 }
 
 

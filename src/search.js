@@ -191,10 +191,10 @@ const Search = () => {
                       <div >
                         <small id="stype"> {result.type} </small>
                         <h3 id="shead">{result.title}</h3>
-                        <p id="sp">{result.content}</p>
+                        <p id="sp" style={{ whiteSpace: 'pre-wrap' }}>{result.content}</p>
                       </div>
                     ) : (
-                      <div>{result.content}</div>
+                      <div style={{ whiteSpace: 'pre-wrap' }}>{result.content}</div>
                     )}
                   </li>
                   </div>
@@ -212,10 +212,10 @@ const Search = () => {
                       <div >
                       <small id="stype"> {result.type} </small>
                       <h3 id="shead">{result.title}</h3>
-                      <p id="sp">{result.content}</p>
+                      <p id="sp" style={{ whiteSpace: 'pre-wrap' }}>{result.content}</p>
                     </div>
                     ) : (
-                      <div>{result.content}</div>
+                      <div style={{ whiteSpace: 'pre-wrap' }}>{result.content}</div>
                     )}
                   </li>
                   </div>
@@ -257,12 +257,12 @@ const Search = () => {
                       <div >
                       <small id="stype"> answer </small>
                       <h3 id="shead">{result.title}</h3>
-                      <p id="sp">{result.content}</p>
+                      <p id="sp" style={{ whiteSpace: 'pre-wrap' }}>{result.content}</p>
                     </div>
                     ) : (
                       <>
                       <small id="stype"> answer </small>
-                      <div>{result.content}</div>
+                      <div style={{ whiteSpace: 'pre-wrap' }}>{result.content}</div>
                       </>
                     )}
                   </li>

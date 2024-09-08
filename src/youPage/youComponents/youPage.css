@@ -221,9 +221,13 @@ box-shadow:  28px 28px 57px #933da2,
 
 
 .Logout{
+    border: none;
     padding-left: 8px;
     padding-right: 8px;
-    border-radius: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 0px;
+    border-radius: 3px;
     background-color: red;
     color: white;
 }

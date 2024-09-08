@@ -841,7 +841,7 @@ export default function CommentList({ questionId }) {
               </div>
             </div>
             
-            <div id="commcontent">{comment.content}</div>
+            <div id="commcontent" style={{ whiteSpace: 'pre-wrap' }}>{comment.content}</div>
           </div>
           <hr />
         </li>

@@ -354,7 +354,7 @@ console.log(isMarked)
           </div>
           <div className="titleContainer">
             <div className="titleContent">
-              <h1 id="questionTitle">{question.title}</h1>
+              <h1 id="questionTitle" >{question.title}</h1>
             </div>
             <div className="mark">
               {isMarked === 0 ? (<button id="marked" onClick={handelMarked}><FontAwesomeIcon icon={faBookmark}></FontAwesomeIcon> Mark  </button>):(
@@ -408,15 +408,15 @@ console.log(isMarked)
             <div class="content-container">
               <div className="qu">
                 <div className="content-of-question">
-                  <p>{question.content}</p>
+                  <p style={{ whiteSpace: 'pre-wrap' }}>{question.content}</p>
             
-                  {imageUrl? (<div className="queImg" ><ImageComponent imageUrl={imageUrl} /> </div>) :
+                  {imageUrl? (<div className="queImg" ><ImageComponent id="qimg" imageUrl={imageUrl} /> </div>) :
                   null}
                 </div>
               </div>
             </div>
           </div>
-          <div className="theQtags">  <div id="quetags">
+          <div className="theQtags">  <div id="innerquetags">
                         {questionTags[question.id] ? (
                           questionTags[question.id].map((tag) => (
                             <span key={tag.tag_id} id="quetagresult">

@@ -113,10 +113,11 @@ function Ask() {
         .post("http://localhost:8081/question", values)
         .then((res) => {
           console.log(res);
-          navigate("/Home");
+          
         })
         .catch((err) => console.log(err));
     }
+    navigate("/questions");
   };
 
 

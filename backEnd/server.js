@@ -12,6 +12,10 @@ const app = express();
 const axios = require('axios');
 const bcrypt = require('bcrypt');
 const { generateThumbnail } = require('pdf-thumbnail');
+const { Blob } = require('buffer');
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
+const FormData = require('form-data'); // If using node-fetch or axios, still use form-data
 
 app.get('/pdf-thumbnail', async (req, res) => {
   const pdfUrl = req.query.url;
@@ -53,8 +57,14 @@ app.post("/signup", async (req, res) => {
     db.query(sql, [values], (err, data) => {
       //console.log(values);
       if (err) {
-        console.log(err + "H");
-        return res.json("Error");
+        if (err.code === 'ER_DUP_ENTRY') {
+          // Handle duplicate entry error
+          return res.status(409).json({ Message: "Username or Email already exists" });
+        } else {
+          // Handle other types of errors
+          console.error(err);
+          return res.status(500).json({ Message: "Server Error" });
+        }
       }
       console.log(data + "H");
       return res.json({ Status: "Success" });
@@ -1571,6 +1581,57 @@ app.get('/api/answers/count/:questionId', async (req, res) => {
 
 
 
+app.post('/processpdf', upload.array('pdfFiles'), async (req, res) => {
+  console.log("HI PDF");
+  try {
+      const formData = new FormData();
+      console.log(req.files); // Log the uploaded files
+
+      // Use Buffer instead of Blob
+      req.files.forEach(file => {
+          formData.append('pdf_files', file.buffer, { filename: file.originalname, contentType: file.mimetype });
+      });
+
+      // Send the form data to another server
+      const response = await axios.post('http://localhost:5000/process_pdf', formData, {
+          headers: formData.getHeaders()
+      });
+
+      console.log(response.data);
+      res.json(response.data);
+  } catch (error) {
+      console.error("PDF Error", error);
+      res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/ask-question', async (req, res) => {
+  try {
+      const { question } = req.body;
+      const response = await axios.post('http://localhost:5000/ask_question', { question });
+
+      res.json(response.data);
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+});
+
+
+
 app.listen(8081, () => {
   console.log("listening");
 });
+
+
+
+
+/* user0 password = UtS$0033 */
+/* Soham password = Cs23b#1068 */
+/* catman = CtU$0033 */
+/* Kahnaiiya = KtU$0033*/
+/* Keyboard_warrior = KtU$0033*/
+/* Keyboard_warrior = KtU$0033*/
+/* BrainyScholar = BrtU$0033 */
+/* NoteNinja NotU$0033 */
+/* SmartyPants SmtU$0033 */
+/* CuriosityCat CutU$0033 */

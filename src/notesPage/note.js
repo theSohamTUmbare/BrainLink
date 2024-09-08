@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Modal from "react-modal";
 import { Worker } from "@react-pdf-viewer/core";
 import { Viewer } from "@react-pdf-viewer/core";
@@ -317,16 +317,24 @@ const Note = ({ isOpen }) => {
             </div>
           </div>
           <hr />
+          <Link to={`/pdfChat/${note.id}`} state={{ note }}>
           <div className="divViewPdf">
             <button className="view-pdf" onClick={openModal}>
-              View PDF
+            <svg width="24" height="24" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg"> = $0
+<path d="M22.25 4.5C22.25 6.01878 21.0188 7.25 19.5 7.25C17.9812 7.25 16.75 6.01878 16.75 4.5C16.75 2.98122 17.9812
+1.75 19.5 1.750C21.0188 1.75 22.25 2.98122 22.25 4.52" fill="currentColor"></path>
+<path d="M12.7079 4.19048C12.6312 3.51289 12.0583 3.0007 11.3764 3C10.6944 2.9993 10.1205 3.51032 10.0424 4.18776C9.55454 8.41731 7.16731 10.8045 2.93776 11.2924C2.26032 11.3785 1.7493 11.9444 1.75 12.6264C1.7507 13.3083 2.26289 13.8812 2.94048 13.9579C7.11004 14.432 9.6628 16.7945 10.0388 21.027C10.1003 21.72 10.6811 22.2508 11.3765 22.25C12.072 22.2492 12.6515 21.7171 12.7115 21.0242C13.0727 16.8513 15.6013 14.3227 19.7742 13.9615C20.4671 13.9015 20.9992 13.322 21 12.6265C21.0008 11.9311 20.47 11.3503 19.7772 11.2888C15.5445 10.9128 13.1802 8.36004 12.7079 4.19048Z" fill="currentColor">
+</path>
+
+</svg> View PDF
             </button>
           </div>
+          </Link>
           <div className="moreInfo">
             <div className="mrprof">■ Professor: {mrProfessor}</div>
             <div className="sem">■ Recommended for Semester: {sem}</div>
             <hr />
-            <div className={classNames("noteDescripition", { "-Descriptionactive": !isOpen })}>
+            <div className={classNames("noteDescripition", { "-Descriptionactive": !isOpen })} style={{ whiteSpace: 'pre-wrap' }} >
               {note.course_description}
             </div>
           </div>

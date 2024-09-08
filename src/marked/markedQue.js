@@ -142,7 +142,7 @@ const MarkedQue = ({isOpen}) => {
                 <div className="hometagsnuser">
                   <div id="youquetags">
                         {questionTags[question.id] ? (
-                          questionTags[question.id].map((tag) => (
+                          questionTags[question.id].slice(0,3).map((tag) => (
                             <span key={tag.tag_id} id="quetagresult">
                               {tag.tag_name}
                             </span>

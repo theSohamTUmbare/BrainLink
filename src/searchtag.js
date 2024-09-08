@@ -60,10 +60,10 @@ const SearchTag = () =>{
                   {question.title ? (
                     <div >
                       <h3 id="shead">{question.title}</h3>
-                      <p id="sp">{question.content}</p>
+                      <p id="sp" style={{ whiteSpace: 'pre-wrap' }} >{question.content}</p>
                     </div>
                   ) : (
-                    <div>{question.content}</div>
+                    <div style={{ whiteSpace: 'pre-wrap' }} >{question.content}</div>
                   )}
                 </li>
                 </div>

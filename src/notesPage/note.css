@@ -20,12 +20,12 @@
   left: 58.3%;
   right: auto;
   bottom: auto;
-  marginright: -50%;
+  margin-right: -50%;
   transform: translate(-50%, -50%);
   width: 83%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 15px;
+  border-radius: 3px;
   padding: 0px;
   overflow: auto;
 }
@@ -33,10 +33,11 @@
 .pdf-overlay {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  left: -213px;
+  right: 482px;
   bottom: 0;
-  z-index: 900;
+  z-index: 0;
+  /* background-color: rgba(237, 2, 2, 0.75);
   /* background-color: rgba(237, 2, 2, 0.75); */
 }
 
@@ -109,6 +110,7 @@
 .created_time {
   float: right;
   align-self: center;
+  width: 185px;
 }
 
 .titles {
