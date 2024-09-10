@@ -889,7 +889,7 @@ app.post("/noteupload", async (req, res) => {
   }
 
   try {
-      // Assuming you have a function getAuthorIdFromToken(token) to fetch authorId from token
+      
       const authorId = await get_author_id(token);
 
       const sql = "INSERT INTO notes (course_name, semester, prof_name, course_description, author_id, votes, pdf, file_name, file_size) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -1454,7 +1454,6 @@ app.get('/api/notes/user/:userId', (req, res) => {
   });
 });
 
-// Assuming you have already set up Express and your database connection as 'db'
 
 app.get('/api/questions/liked/:userId', (req, res) => {
   const userId = req.params.userId;
@@ -1555,7 +1554,7 @@ app.get('/api/tags/:questionId', async (req, res) => {
           if (err) {
               res.status(500).json({ error: 'Database error' });
           } else {
-              res.json(results);  // Ensure only results are sent as JSON
+              res.json(results);  // only results are sent as JSON
           }
       });
   } catch (error) {
@@ -1571,7 +1570,7 @@ app.get('/api/answers/count/:questionId', async (req, res) => {
           if (err) {
               return res.status(500).json({ error: 'Database error' });
           }
-          res.json(results[0]);  // Return the count result
+          res.json(results[0]);  // Returnin the count result
       });
   } catch (error) {
       res.status(500).json({ error: 'Server error' });

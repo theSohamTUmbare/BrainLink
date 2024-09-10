@@ -337,3 +337,17 @@ ol {
   display: flex;
   justify-content: left;
 }
+
+.que_heading{
+  display: flex;
+  justify-content: left;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  mix-blend-mode:difference;
+  color: rgba(255, 255, 255, 1); /*Default color*/
+  opacity: 2;
+  
+  /* text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8);
+   */
+   
+}

@@ -217,7 +217,7 @@ const Note = ({ isOpen }) => {
   // var isDownvoted = false;
   // var isUpvoted = true;
 
-  // Check if pdf is a Buffer and convert it to a string
+  // Checking, if pdf is a Buffer and convert it to a string
   const pdf_url = note?.pdf;
   let pdfUrlString = "";
 

@@ -103,7 +103,7 @@ const QuestionList = ({ isOpen, toggle }) => {
       id="que-page"
     >
       <div>
-        <h1>Questions</h1>
+        <h1 className="que_heading">Questions</h1>
         <ul>
           {questions
             .slice()
